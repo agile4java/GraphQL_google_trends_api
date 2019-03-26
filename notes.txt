@@ -1,0 +1,57 @@
+To start:  npm run dev:server starts graphql
+            npm run json:server starts json server for development
+
+
+Packages:
+
+    express
+    express-graphql
+    graphql
+    nodemon
+    axios
+    json-server
+
+localhost:3000/graphql opens the graphiql interface
+    can make queries, example:
+        {
+            customer(id: "4"){
+                name,
+                email,
+                age
+            }
+        }
+    returns customer number 4 name, email, age!
+
+graphql methods in schema.js:
+
+rootQuery query: returns customer or customers
+
+Enter this in localhost:4000/graphql to add customer:
+
+mutation addCustomer: adds customer: example:
+    mutation{
+        addCustomer(name: "Harry White", email: "hwhite@gmail.com", age: 50){
+            // this part defines what you want returned after adding:
+             id,
+              name,
+              email
+         }
+}
+
+Click Run:  Response:
+    {
+  "data": {
+    "addCustomer": {
+      "id": "C1l620D",
+      "name": "Harry White",
+      "email": "hwhite@gmail.com"
+    }
+  }
+}
+
+mutation deleteCustomer: example:
+    mutation{
+        deleteCustomer(id: "someId"){
+            id // returns null
+        }
+    }
